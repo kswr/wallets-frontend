@@ -88,7 +88,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Wallets Frontend App!'
+      msg: 'Welcome to Wallets Frontend App, testing Jenkins!'
     }
   }
 }
