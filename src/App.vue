@@ -1,16 +1,23 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <simple-map></simple-map>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  import SimpleMap from './components/SimpleMap'
+
+  export default {
+    name: 'App',
+    components: {
+      SimpleMap
+    }
   }
-}
 </script>
+
+<style>
+  body{
+    margin: 0;
+  }
+</style>
