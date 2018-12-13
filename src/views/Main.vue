@@ -1,11 +1,23 @@
 <template>
     <div class="main">
-        <h1>This is main app page</h1>
+        <app-header app/>
+        <v-content>
+            <router-view></router-view>
+        </v-content>
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    import AppHeader from '@/components/AppHeader.vue'
+
+    export default {
+        data() {
+            return {
+                drawer: false
+            }
+        },
+        components: {
+            AppHeader
+        }
+    }
 </script>

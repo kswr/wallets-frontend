@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home">
       <v-img src="/google-earth-temp.jpg"></v-img>
     </div>
 </template>
