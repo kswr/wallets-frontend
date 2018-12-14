@@ -1,7 +1,7 @@
 <template>
-<nav>
-    <v-navigation-drawer fixed app clipped v-model="drawer"></v-navigation-drawer>
-    <v-toolbar class="app-header" fixed app clipped-left>
+<nav class="app-header">
+    <v-navigation-drawer fixed app clipped v-model="drawer" class="nav-draw"></v-navigation-drawer>
+    <v-toolbar class="app-toolbar" fixed app clipped-left>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title class="headline text-uppercase">
             <router-link to="app" tag="span" exact :style="{ cursor: 'pointer'}">WPS</router-link>
@@ -24,3 +24,13 @@
         }
     }
 </script>
+
+<style>
+.app-toolbar {
+    z-index: 2000
+}
+
+.nav-draw {
+    z-index: 2000
+}
+</style>

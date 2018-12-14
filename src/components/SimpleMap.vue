@@ -34,6 +34,6 @@
 
 <style scoped>
   #mapid {
-    height: 100vh;
+    height: calc(100vh - 64px);
   }
 </style>
