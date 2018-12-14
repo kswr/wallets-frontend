@@ -13,7 +13,7 @@
     },
     methods: {
       initMap: function () {
-        this.map = L.map('mapid').setView([52.5, 19], 5);
+        this.map = L.map('mapid', {attributionControl: false}).setView([52.5, 19], 5);
         // this.map = L.map('mapid').setView([40, -100], 4);
       },
       addFirstLayer: function () {
@@ -33,7 +33,7 @@
 </script>
 
 <style scoped>
-  #mapid {
-    height: calc(100vh - 64px);
-  }
+  /* #mapid {
+    /* height: calc(100vh - 64px); 
+  } */
 </style>

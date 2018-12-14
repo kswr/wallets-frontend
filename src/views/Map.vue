@@ -1,7 +1,6 @@
 <template>
     <div class="map">
-        <!-- <h1>This is Simple Map View</h1> -->
-        <simple-map app></simple-map>
+        <simple-map app class="simple-map"></simple-map>
     </div>
 </template>
 
@@ -18,4 +17,11 @@ export default {
     }
 }
 </script>
+
+<style>
+.simple-map {
+    /* height: calc(50vh - 64px); */
+    height: 100%;
+}
+</style>
 
