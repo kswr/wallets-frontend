@@ -1,4 +1,8 @@
-# wallets-frontend
+# Wallets frontend
+
+> Frontend for Wallets RESTful app
+
+[![Build Status](https://www.jenkins.oleszynski.com/buildStatus/icon?job=build-and-deploy-wallets-front-master)](https://www.jenkins.oleszynski.com/job/build-and-deploy-wallets-front-master)
 
 ## Project setup
 ```
