@@ -1,6 +1,6 @@
 <template>
 <nav class="app-header">
-    <v-navigation-drawer fixed app clipped v-model="drawer" class="nav-draw"></v-navigation-drawer>
+    <v-navigation-drawer fixed app clipped v-model="drawer" class="nav-draw" disable-resize-watcher></v-navigation-drawer>
     <v-toolbar class="app-toolbar" fixed app clipped-left>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title class="headline text-uppercase">
