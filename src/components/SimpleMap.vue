@@ -33,7 +33,4 @@
 </script>
 
 <style scoped>
-  /* #mapid {
-    /* height: calc(100vh - 64px); 
-  } */
 </style>

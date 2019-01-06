@@ -13,7 +13,6 @@
 
 <style scoped>
     .home {
-        /*height: calc(100vh - 64px);*/
         height: 100%;
     }
     .home {
