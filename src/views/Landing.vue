@@ -1,8 +1,8 @@
 <template>
     <div class="landing">
         <home-header />
-        <v-content>
-            <router-view></router-view>
+        <v-content class="vcontent">
+            <router-view class="router"></router-view>
         </v-content>
     </div>
 </template>
@@ -15,3 +15,14 @@
         }
     }
 </script>
+
+<style scoped>
+
+    .vcontent {
+        height: 100vh;
+    }
+
+    .router {
+        height: 100%;
+    }
+</style>

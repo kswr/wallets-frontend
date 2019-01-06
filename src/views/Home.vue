@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-      <v-img src="/google-earth-temp.jpg" class="home2"></v-img>
+      <!--<v-img src="/google-earth-temp.jpg" class="home2"></v-img>-->
     </div>
 </template>
 
@@ -11,9 +11,17 @@
   }
 </script>
 
-<style>
-.home2 {
-  height: 110vh;
-}
+<style scoped>
+    .home {
+        /*height: calc(100vh - 64px);*/
+        height: 100%;
+    }
+    .home {
+        background: url(/google-earth-temp.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 </style>
 
