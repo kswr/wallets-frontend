@@ -22,5 +22,8 @@ export default {
 .simple-map {
     height: 100%;
 }
+    .map {
+        height: 100vh;
+    }
 </style>
 
