@@ -6,7 +6,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn flat router-link to="login">
-            <span class="mr-2">Logowanie</span>
+            <span class="mr-2">Sign in</span>
         </v-btn>
     </v-toolbar>
 </template>

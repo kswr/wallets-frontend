@@ -1,30 +1,44 @@
 <template>
     <div id="login" class="login">
-        <v-container class="fill-height">
-            <v-layout class="justify-center align-center">
-                <v-flex xs10 sm7 md5 lg4 xl3 class="grey lighten-3 elevation-10" style=" border-radius: 20px">
-                    <div style="padding: 30px 40px;">
-                        <p class="display-1 grey--text text--darken-3">Podaj dane swojego konta</p>
-                        <v-text-field
-                                v-model="login"
-                                label="Login"
-                                required></v-text-field>
+        <v-form ref="loginForm" class="fill-height">
+            <v-container class="fill-height">
+                <v-layout class="justify-center align-center">
+                    <v-flex xs10 sm7 md5 lg4 xl3 class="grey lighten-3 elevation-10" style=" border-radius: 20px">
+                        <div style="padding: 30px 40px;">
+                            <p class="display-1 grey--text text--darken-3">Sign in</p>
+                            <v-text-field
+                                    v-model="username"
+                                    label="Username"
+                                    required
+                                    :rules="loginRules"
+                                    v-on:keyup.enter="submit"
+                            ></v-text-field>
 
-                        <v-text-field
-                                v-model="password"
-                                label="Hasło"
-                                required></v-text-field>
-                        <v-layout class="align-center column">
-                            <v-btn to="app" block large color="light-green darken-1" class="white--text">Zaloguj</v-btn>
-                            <br>
-                            <a>Zapomniałeś hasła?</a>
-                            <a>Nie posiadasz konta?</a>
-                        </v-layout>
-                    </div>
-                </v-flex>
+                            <v-text-field
+                                    v-model="password"
+                                    label="Password"
+                                    required
+                                    :rules="passwordRules"
+                                    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                                    :type="showPassword ? 'text' : 'password'"
+                                    @click:append="showPassword = !showPassword"
+                                    v-on:keyup.enter="submit"
+                            ></v-text-field>
+                            <v-alert v-model="invalidCredentials" type="error" transition="scale-transition" outline>Forgot your password? <router-link to="" class="red--text" style="text-decoration: underline">Reset it here</router-link></v-alert>
+                            <br v-if="!invalidCredentials">
+                            <v-layout class="align-center column">
+                                <v-btn block large color="light-green darken-1" class="white--text" @click="submit">Login</v-btn>
+                                <br>
+                                <router-link to="">Forgot your password?</router-link>
+                                <router-link to=""">Don't have an account?</router-link>
+                                <!--<a v-if="invalidCredentials">Whatever</a>-->
+                            </v-layout>
+                        </div>
+                    </v-flex>
 
-            </v-layout>
-        </v-container>
+                </v-layout>
+            </v-container>
+        </v-form>
     </div>
 </template>
 
@@ -32,8 +46,36 @@
     export default {
         data() {
             return {
-                login: '',
-                password: ''
+                username: '',
+                password: '',
+                showPassword: false,
+                loginRules: [
+                    v => !!v || 'Username is required'
+                ],
+                passwordRules: [
+                    v => !!v || 'Password is required'
+                ],
+            }
+        },
+        methods: {
+            login() {
+                this.$store.dispatch('retrieveToken', {
+                    username: this.username,
+                    password: this.password,
+                })
+                    .then(response => {
+                        this.$router.push({ name: 'app' })
+                    })
+            },
+            submit() {
+                if (this.$refs.loginForm.validate()) {
+                    this.login();
+                }
+            }
+        },
+        computed: {
+            invalidCredentials() {
+                return this.$store.getters.invalidCredentials;
             }
         }
     }
@@ -51,4 +93,9 @@
         -o-background-size: cover;
         background-size: cover;
     }
+    
+    a {
+        text-decoration: none;
+    }
+
 </style>
