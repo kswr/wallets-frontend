@@ -39,7 +39,15 @@
                     .then(() => {
                         this.$router.push({name: 'landing'})
                 });
+            },
+            testLog() {
+                console.log(process.env.NODE_ENV);
+                console.log(process.env.VUE_APP_TITLE);
+                console.log(process.env.VUE_APP_API);
             }
+        },
+        mounted() {
+            this.testLog();
         }
     }
 </script>

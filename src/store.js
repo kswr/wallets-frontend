@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex);
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = process.env.VUE_APP_API;
+
 
 export default new Vuex.Store({
   state: {
