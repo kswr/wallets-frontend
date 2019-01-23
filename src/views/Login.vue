@@ -34,7 +34,6 @@
                             </v-layout>
                         </div>
                     </v-flex>
-
                 </v-layout>
             </v-container>
         </v-form>
