@@ -30,7 +30,7 @@
                                 <v-btn block large color="light-green darken-1" class="white--text" @click="submit">Login</v-btn>
                                 <br>
                                 <router-link to="">Forgot your password?</router-link>
-                                <router-link to=""">Don't have an account?</router-link>
+                                <router-link to="">Don't have an account?</router-link>
                                 <!--<a v-if="invalidCredentials">Whatever</a>-->
                             </v-layout>
                         </div>
