@@ -27,6 +27,7 @@ export default new Vuex.Store({
           state.invalidCredentials = valid;
       },
       logout(state) {
+          localStorage.removeItem('access_token');
           state.token = null;
       }
   },
@@ -53,10 +54,6 @@ export default new Vuex.Store({
           })
       },
       logout(context) {
-          // return new Promise((resolve) => {
-          //     context.commit('logout');
-          //     resolve("done");
-          // })
           context.commit('logout');
       }
   }
