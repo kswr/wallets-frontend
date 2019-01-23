@@ -12,7 +12,7 @@
                 <v-btn flat router-link to="login" v-if="!loggedIn">
                     <span class="mr-2">Sign in</span>
                 </v-btn>
-                <v-btn flat router-link to="/" v-if="loggedIn">
+                <v-btn flat router-link v-if="loggedIn" @click="logout">
                     <span class="mr-2">Logout</span>
                 </v-btn>
             </v-toolbar>
@@ -31,6 +31,14 @@
         computed: {
             loggedIn() {
                 return this.$store.getters.loggedIn;
+            }
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('logout')
+                    .then(() => {
+                        this.$router.push({name: 'landing'})
+                });
             }
         }
     }

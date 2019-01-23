@@ -24,6 +24,9 @@ export default new Vuex.Store({
       },
       mutateCredentials(state, valid) {
           state.invalidCredentials = valid;
+      },
+      logout(state) {
+          state.token = null;
       }
   },
   actions: {
@@ -37,20 +40,23 @@ export default new Vuex.Store({
 
                       const token = response.data.accessToken
 
-                      localStorage.setItem('acces_token', token)
+                      localStorage.setItem('access_token', token)
                       context.commit('retrieveToken', token)
                       context.commit('mutateCredentials', false);
                       resolve(response)
-
-                      // console.log(response);
-                      // context.commit('addTodo', response.data)
                   })
                   .catch(error => {
                       context.commit('mutateCredentials', true);
-                      // console.log("Rejected");
                       reject(error);
                   })
           })
+      },
+      logout(context) {
+          // return new Promise((resolve) => {
+          //     context.commit('logout');
+          //     resolve("done");
+          // })
+          context.commit('logout');
       }
   }
 })
