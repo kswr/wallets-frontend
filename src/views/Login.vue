@@ -31,7 +31,6 @@
                                 <br>
                                 <router-link to="">Forgot your password?</router-link>
                                 <router-link to="">Don't have an account?</router-link>
-                                <!--<a v-if="invalidCredentials">Whatever</a>-->
                             </v-layout>
                         </div>
                     </v-flex>
