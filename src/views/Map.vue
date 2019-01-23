@@ -20,8 +20,10 @@ export default {
 
 <style>
 .simple-map {
-    /* height: calc(50vh - 64px); */
     height: 100%;
 }
+    .map {
+        height: 100vh;
+    }
 </style>
 

@@ -9,7 +9,10 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn flat router-link to="/">
-            <span class="mr-2">Wyloguj</span>
+            <span class="mr-2">Logout</span>
+        </v-btn>
+        <v-btn flat router-link to="main">
+            <span class="mr-2">Main</span>
         </v-btn>
     </v-toolbar>
 </nav>
@@ -20,6 +23,11 @@
         data() {
             return {
                 drawer: false
+            }
+        },
+        computed: {
+            loggedIn() {
+                return this.$store.getters.loggedIn;
             }
         }
     }
