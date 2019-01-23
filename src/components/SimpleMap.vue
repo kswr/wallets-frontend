@@ -33,7 +33,6 @@
     mounted() {
       this.initMap();
       this.addFirstLayer();
-      this.addControls();
     }
   }
 </script>
