@@ -1,6 +1,6 @@
 <template>
-    <div class="map">
-        <simple-map app class="simple-map"></simple-map>
+    <div id="map">
+        <simple-map class="simple-map"></simple-map>
     </div>
 </template>
 
@@ -19,11 +19,8 @@ export default {
 </script>
 
 <style>
-.simple-map {
-    height: 100%;
-}
-    .map {
-        height: 100vh;
+    #map {
+        height: 100%;
     }
 </style>
 

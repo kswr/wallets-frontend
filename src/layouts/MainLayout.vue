@@ -1,8 +1,8 @@
 <template>
     <v-app>
-        <nav class="app-header" id="app">
-            <v-navigation-drawer fixed app clipped v-model="drawer" class="nav-draw" disable-resize-watcher v-if=loggedIn></v-navigation-drawer>
-            <v-toolbar class="app-toolbar" fixed app clipped-left >
+        <nav class="app-header" id="app" >
+            <v-navigation-drawer fixed clipped v-model="drawer" class="nav-draw" disable-resize-watcher v-if=loggedIn></v-navigation-drawer>
+            <v-toolbar class="app-toolbar" clipped-left >
                 <v-toolbar-side-icon @click="drawer = !drawer" v-if=loggedIn></v-toolbar-side-icon>
                 <v-toolbar-title class="headline text-uppercase">
                     <router-link to="/" tag="span" exact :style="{ cursor: 'pointer'}">WPS</router-link>
@@ -11,6 +11,9 @@
                 <v-spacer></v-spacer>
                 <v-btn flat router-link to="login" v-if="!loggedIn">
                     <span class="mr-2">Sign in</span>
+                </v-btn>
+                <v-btn flat router-link to="signup" v-if="!loggedIn" outline >
+                    <span class="mr-2">Sign up</span>
                 </v-btn>
                 <v-btn flat router-link v-if="loggedIn" @click="logout">
                     <span class="mr-2">Logout</span>
