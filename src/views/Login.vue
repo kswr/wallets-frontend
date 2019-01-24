@@ -24,8 +24,8 @@
                                     @click:append="showPassword = !showPassword"
                                     v-on:keyup.enter="submit"
                             ></v-text-field>
-                            <v-alert v-model="invalidCredentials" type="error" transition="scale-transition" outline>Forgot your password? <router-link to="passret" class="red--text" style="text-decoration: underline">Reset it here</router-link></v-alert>
-                            <br v-if="!invalidCredentials">
+                            <v-alert v-model="displayReset" type="error" transition="scale-transition" outline>Forgot your password? <router-link to="passret" class="red--text" style="text-decoration: underline">Reset it here</router-link></v-alert>
+                            <br v-if="!displayReset">
                             <v-layout class="align-center column">
                                 <v-btn block large color="light-green darken-1" class="white--text" @click="submit">Login</v-btn>
                                 <br>
@@ -46,6 +46,7 @@
             return {
                 username: '',
                 password: '',
+                attempts: 0,
                 showPassword: false,
                 loginRules: [
                     v => !!v || 'Username is required'
@@ -64,6 +65,9 @@
                     .then(response => {
                         this.$router.push({ name: 'app' })
                     })
+                    .catch(error => {
+                        this.attempts++;
+                    })
             },
             submit() {
                 if (this.$refs.loginForm.validate()) {
@@ -72,8 +76,8 @@
             }
         },
         computed: {
-            invalidCredentials() {
-                return this.$store.getters.invalidCredentials;
+            displayReset() {
+                return this.attempts > 0;
             }
         }
     }
