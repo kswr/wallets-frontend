@@ -12,7 +12,12 @@
             }
         },
         methods: {
-
+            pushAfter3Sec() {
+                setTimeout( ()=> this.$router.push({ path: 'login' }), 3000);
+            }
+        },
+        created() {
+            this.pushAfter3Sec();
         }
     }
 </script>
