@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="login">
+    <div id="login">
         <v-form ref="loginForm" class="fill-height">
             <v-container class="fill-height">
                 <v-layout class="justify-center align-center">
@@ -24,17 +24,16 @@
                                     @click:append="showPassword = !showPassword"
                                     v-on:keyup.enter="submit"
                             ></v-text-field>
-                            <v-alert v-model="invalidCredentials" type="error" transition="scale-transition" outline>Forgot your password? <router-link to="" class="red--text" style="text-decoration: underline">Reset it here</router-link></v-alert>
-                            <br v-if="!invalidCredentials">
+                            <v-alert v-model="displayReset" type="error" transition="scale-transition" outline>Forgot your password? <router-link to="passret" class="red--text" style="text-decoration: underline">Reset it here</router-link></v-alert>
+                            <br v-if="!displayReset">
                             <v-layout class="align-center column">
                                 <v-btn block large color="light-green darken-1" class="white--text" @click="submit">Login</v-btn>
                                 <br>
-                                <router-link to="">Forgot your password?</router-link>
-                                <router-link to="">Don't have an account?</router-link>
+                                <router-link to="passret">Forgot your password?</router-link>
+                                <router-link to="signup">Don't have an account?</router-link>
                             </v-layout>
                         </div>
                     </v-flex>
-
                 </v-layout>
             </v-container>
         </v-form>
@@ -47,6 +46,7 @@
             return {
                 username: '',
                 password: '',
+                attempts: 0,
                 showPassword: false,
                 loginRules: [
                     v => !!v || 'Username is required'
@@ -65,6 +65,9 @@
                     .then(response => {
                         this.$router.push({ name: 'app' })
                     })
+                    .catch(error => {
+                        this.attempts++;
+                    })
             },
             submit() {
                 if (this.$refs.loginForm.validate()) {
@@ -73,8 +76,8 @@
             }
         },
         computed: {
-            invalidCredentials() {
-                return this.$store.getters.invalidCredentials;
+            displayReset() {
+                return this.attempts > 0;
             }
         }
     }
@@ -85,7 +88,7 @@
         height: 100%;
     }
 
-    .login {
+    #login {
         background: url(/google-earth-temp-mask.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;

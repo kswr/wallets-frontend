@@ -1,5 +1,5 @@
 <template>
-    <div id="mapid" class="simple-map">
+    <div id="simplemap">
 
     </div>
 </template>
@@ -13,8 +13,7 @@
     },
     methods: {
       initMap: function () {
-        this.map = L.map('mapid', {attributionControl: false, zoomControl: false}).setView([52.5, 19], 5);
-        // this.map = L.map('mapid').setView([40, -100], 4);
+        this.map = L.map('simplemap', {attributionControl: false, zoomControl: false}).setView([51.5, 19], 6);
       },
       addFirstLayer: function () {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -39,4 +38,7 @@
 </script>
 
 <style scoped>
+    #simplemap {
+        height: 100%;
+    }
 </style>

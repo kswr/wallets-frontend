@@ -4,6 +4,9 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import store from './store'
 import Map from './views/Map.vue'
+import Signup from './views/Signup'
+import Passret from './views/Passret'
+import Registered from './views/Registered'
 
 Vue.use(Router)
 
@@ -40,6 +43,34 @@ export default new Router({
       }
     },
     {
+      path: '/signup',
+      name: 'signup',
+      component: Signup,
+      beforeEnter: (to, from, next) => {
+        if (!store.getters.loggedIn) {
+          next()
+        } else {
+          next({
+            name: 'app'
+          })
+        }
+      }
+    },
+    {
+      path: '/passret',
+      name: 'passret',
+      component: Passret,
+      beforeEnter: (to, from, next) => {
+        if (!store.getters.loggedIn) {
+          next()
+        } else {
+          next({
+            name: 'app'
+          })
+        }
+      }
+    },
+    {
       path: '/app',
       name: 'app',
       component: Map,
@@ -49,6 +80,20 @@ export default new Router({
         } else {
           next({
             name: 'login'
+          })
+        }
+      }
+    },
+    {
+      path: '/registered',
+      name: 'registered',
+      component: Registered,
+      beforeEnter: (to, from, next) => {
+        if (!store.getters.loggedIn) {
+          next()
+        } else {
+          next({
+            name: 'app'
           })
         }
       }

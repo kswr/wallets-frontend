@@ -9,22 +9,15 @@ axios.defaults.baseURL = process.env.VUE_APP_API;
 export default new Vuex.Store({
   state: {
       token: localStorage.getItem('access_token') || null,
-      invalidCredentials: false,
   },
   getters: {
       loggedIn(state) {
           return state.token !== null;
       },
-      invalidCredentials(state) {
-          return state.invalidCredentials;
-      }
   },
   mutations: {
       retrieveToken(state, token) {
           state.token = token;
-      },
-      mutateCredentials(state, valid) {
-          state.invalidCredentials = valid;
       },
       logout(state) {
           localStorage.removeItem('access_token');
@@ -44,17 +37,32 @@ export default new Vuex.Store({
 
                       localStorage.setItem('access_token', token)
                       context.commit('retrieveToken', token)
-                      context.commit('mutateCredentials', false);
                       resolve(response)
                   })
                   .catch(error => {
-                      context.commit('mutateCredentials', true);
                       reject(error);
                   })
           })
       },
       logout(context) {
           context.commit('logout');
+      },
+      signUp(context, credentials) {
+          return new Promise((resolve, reject) => {
+              axios.post('/api/auth/signup', {
+                  name: credentials.name,
+                  username: credentials.username,
+                  email: credentials.email,
+                  role: credentials.role,
+                  password: credentials.password
+              })
+                  .then(response => {
+                      resolve(response)
+                  })
+                  .catch(error => {
+                      reject(error)
+                  })
+          })
       }
   }
 })
