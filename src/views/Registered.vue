@@ -5,7 +5,7 @@
                 <v-flex xs12 sm10 md9 lg8 xl7 class="grey lighten-3 elevation-10" style=" border-radius: 20px">
                     <div style="padding: 20px 30px;">
                         <p class="headline grey--text text--darken-3" style="margin: 0">User registered successfully, in
-                            <b>{{ time }}</b> you will be redirected to the starting page</p>
+                            <b>{{ time }}</b> you will be redirected to the login page</p>
                     </div>
                 </v-flex>
             </v-layout>
