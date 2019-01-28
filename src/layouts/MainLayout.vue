@@ -1,8 +1,8 @@
 <template>
     <v-app>
-        <nav class="app-header" id="app" >
+        <nav class="app-header" id="app" ref="nav">
             <v-navigation-drawer fixed clipped v-model="drawer" class="nav-draw" disable-resize-watcher v-if=loggedIn></v-navigation-drawer>
-            <v-toolbar class="app-toolbar" clipped-left >
+            <v-toolbar class="app-toolbar" clipped-left>
                 <v-toolbar-side-icon @click="drawer = !drawer" v-if=loggedIn></v-toolbar-side-icon>
                 <v-toolbar-title class="headline text-uppercase">
                     <router-link to="/" tag="span" exact :style="{ cursor: 'pointer'}">WPS</router-link>
@@ -34,7 +34,7 @@
         computed: {
             loggedIn() {
                 return this.$store.getters.loggedIn;
-            }
+            },
         },
         methods: {
             logout() {
@@ -43,12 +43,7 @@
                         this.$router.push({name: 'landing'})
                 });
             },
-            testLog() {
-            }
         },
-        mounted() {
-            this.testLog();
-        }
     }
 </script>
 
