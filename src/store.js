@@ -49,9 +49,10 @@ export default new Vuex.Store({
       },
       signUp(context, credentials) {
           return new Promise((resolve, reject) => {
-              axios.post('/api/auth/signup', {
-                  name: credentials.name,
-                  username: credentials.username,
+              axios.post('/signup', {
+                  firstName: credentials.firstName,
+                  lastName: credentials.lastName,
+                  userName: credentials.userName,
                   email: credentials.email,
                   role: credentials.role,
                   password: credentials.password

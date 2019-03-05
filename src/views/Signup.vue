@@ -9,10 +9,10 @@
                             <v-layout row wrap>
                                 <v-flex xs12 sm6 md6 lg6 xl6>
                                     <v-text-field
-                                            v-model="username"
+                                            v-model="userName"
                                             label="Username"
                                             required
-                                            :rules="usernameRules"
+                                            :rules="userNameRules"
                                             v-on:keyup.enter="submit"
                                     ></v-text-field>
                                 </v-flex>
@@ -183,14 +183,14 @@
     export default {
         data() {
             return {
-                username: '',
+                userName: '',
                 firstName: '',
                 lastName: '',
                 password: '',
                 email: '',
                 confirmPassword: '',
                 roles: [],
-                availRoles: ['MSA', 'RDSA', 'ADMIN'],
+                availRoles: ['USER_ROLE', 'ADMIN_ROLE'],
                 terms: false,
                 termsDialog: false,
                 rejectClicks: 0,
@@ -202,7 +202,7 @@
                     v => !!v || 'Email is required',
                     v => /.+@.+/.test(v) || 'E-mail must be valid'
                 ],
-                usernameRules: [
+                userNameRules: [
                     v => !!v || 'Username is required',
                     v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
                     v => (v || '').length >= 4 || 'At least 4 characters-long',
@@ -253,8 +253,9 @@
             },
             signUp() {
                 this.$store.dispatch('signUp', {
-                    name: this.firstName,
-                    username: this.username,
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                    userName: this.userName,
                     email: this.email,
                     role: this.roles,
                     password: this.password
