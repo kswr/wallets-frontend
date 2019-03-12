@@ -14,7 +14,14 @@
             }
         },
         components: {
-            MeComponent
+            MeComponent,
         }
     }
 </script>
+
+<style>
+    #meView {
+        background-color: #E0E0E0;
+        height: 100%;
+    }
+</style>
