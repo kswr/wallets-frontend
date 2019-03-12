@@ -1,8 +1,50 @@
 <template>
     <v-app>
         <nav class="app-header" id="app" ref="nav">
-            <v-navigation-drawer fixed clipped v-model="drawer" class="nav-draw" disable-resize-watcher v-if=loggedIn></v-navigation-drawer>
-            <v-toolbar class="app-toolbar" clipped-left>
+            <v-navigation-drawer fixed clipped v-model="drawer" class="nav-draw" disable-resize-watcher v-if=loggedIn>
+                <div style="height: 56px;"></div>
+                <v-container style="padding: 0">
+                    <v-layout style="height: 100px">
+                        <v-flex xs12>
+                            <v-card color="light-grey lighten-4" flat>
+                                <v-layout>
+                                    <v-flex xs4>
+                                        <v-avatar size="80" style="margin: 10px">
+                                            <img :src=avatarUrl alt="trevor">
+                                        </v-avatar>
+                                    </v-flex>
+                                    <v-flex xs8>
+                                        <v-card-title primary-title style="height: 100px">
+                                            <div>
+                                                <div class="title font-weight-light">{{ firstName }}</div>
+                                                <div class="headline font-weight-medium">{{ lastName }}</div>
+                                            </div>
+                                        </v-card-title>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+                <v-divider></v-divider>
+                <v-list>
+                    <v-list-tile
+                            v-for="item in items"
+                            :key="item.title"
+                            :to=item.destination
+                    >
+                            <v-list-tile-action>
+                                <v-icon>{{ item.icon }}</v-icon>
+                            </v-list-tile-action>
+
+                            <v-list-tile-content>
+                                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                            </v-list-tile-content>
+                    </v-list-tile>
+                </v-list>
+            </v-navigation-drawer>
+            <div style="height: 56px"></div>
+            <v-toolbar class="app-toolbar" fixed clipped-left height="56px">
                 <v-toolbar-side-icon @click="drawer = !drawer" v-if=loggedIn></v-toolbar-side-icon>
                 <v-toolbar-title class="headline text-uppercase">
                     <router-link to="/" tag="span" exact :style="{ cursor: 'pointer'}">WPS</router-link>
@@ -25,10 +67,21 @@
 </template>
 
 <script>
+
+
     export default {
         data() {
           return {
-              drawer: false
+              drawer: false,
+              firstName: this.$store.getters.firstName,
+              lastName: this.$store.getters.lastName,
+              avatarUrl: this.$store.getters.avatarUrl,
+              items: [
+                  { title: 'Map', icon: 'map', destination: 'app' },
+                  { title: 'My account', icon: 'account_box', destination: 'me' },
+                  { title: 'Admin', icon: 'gavel', destination: '' },
+                  { title: 'About', icon: 'info', destination: '' },
+              ],
           }
         },
         computed: {
@@ -44,6 +97,8 @@
                 });
             },
         },
+        components: {
+        }
     }
 </script>
 
