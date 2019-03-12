@@ -43,7 +43,8 @@
                     </v-list-tile>
                 </v-list>
             </v-navigation-drawer>
-            <v-toolbar class="app-toolbar" clipped-left height="56px">
+            <div style="height: 56px"></div>
+            <v-toolbar class="app-toolbar" fixed clipped-left height="56px">
                 <v-toolbar-side-icon @click="drawer = !drawer" v-if=loggedIn></v-toolbar-side-icon>
                 <v-toolbar-title class="headline text-uppercase">
                     <router-link to="/" tag="span" exact :style="{ cursor: 'pointer'}">WPS</router-link>
