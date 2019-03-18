@@ -29,8 +29,8 @@
                                                 <v-flex xs12>
                                                     <input type="file" @change="onLoad">
                                                 </v-flex>
-                                                <!--<v-flex xs12 style="margin-top: 10px" @click="snackbar = !snackbar">-->
-                                                    <v-flex xs12 style="margin-top: 10px" @click="onSave">
+                                                <v-flex xs12 style="margin-top: 10px" @click="snackbar = !snackbar">
+                                                    <!--<v-flex xs12 style="margin-top: 10px" @click="onSave">-->
                                                     <v-btn block>Upload</v-btn>
                                                 </v-flex>
                                             </v-layout>
@@ -109,8 +109,6 @@
                 this.newAvatar = event.target.files[0];
             },
             onSave() {
-               // const formData = new FormData();
-               // formData.append('file',this.newAvatar);
                this.$store.dispatch('updateAvatar', {
                    data: this.newAvatar
                })
