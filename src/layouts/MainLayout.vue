@@ -10,7 +10,7 @@
                                 <v-layout>
                                     <v-flex xs4>
                                         <v-avatar size="80" style="margin: 10px">
-                                            <img :src=avatarUrl alt="trevor">
+                                            <img :src=avatarUrl alt="avatar">
                                         </v-avatar>
                                     </v-flex>
                                     <v-flex xs8>
@@ -73,9 +73,6 @@
         data() {
           return {
               drawer: false,
-              firstName: this.$store.getters.firstName,
-              lastName: this.$store.getters.lastName,
-              avatarUrl: this.$store.getters.avatarUrl,
               items: [
                   { title: 'Map', icon: 'map', destination: 'app' },
                   { title: 'My account', icon: 'account_box', destination: 'me' },
@@ -88,6 +85,15 @@
             loggedIn() {
                 return this.$store.getters.loggedIn;
             },
+            avatarUrl() {
+                return this.$store.getters.avatarUrl;
+            },
+            lastName() {
+                return this.$store.getters.lastName;
+            },
+            firstName() {
+                return this.$store.getters.firstName;
+            }
         },
         methods: {
             logout() {
@@ -98,7 +104,7 @@
             },
         },
         components: {
-        }
+        },
     }
 </script>
 

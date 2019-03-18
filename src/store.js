@@ -96,7 +96,6 @@ export default new Vuex.Store({
                   password: credentials.password,
               })
                   .then(response => {
-
                       const token = response.data.token;
                       const avatarUrl = "".concat(process.env.VUE_APP_API, '/getavatar/', response.data.id);
                       const firstName = response.data.firstName;
@@ -105,8 +104,6 @@ export default new Vuex.Store({
                       const username = response.data.username;
                       const userId = response.data.id;
                       const roles = response.data.roles;
-
-
                       localStorage.setItem('access_token', token);
                       localStorage.setItem('avatarUrl', avatarUrl);
                       localStorage.setItem('firstName', firstName);
@@ -130,21 +127,21 @@ export default new Vuex.Store({
                   })
           })
       },
-      getAvatar(context) {
+      updateAvatar(context, avatar) {
           return new Promise((resolve, reject) => {
-              axios.get('/getavatar', {
-                  headers: {
-                      'Authorization' : 'Bearer ' + localStorage.access_token
-                  }
-              }).then(response => {
-
-                  const avatar = response.data;
-                  localStorage.setItem('avatar', avatar);
-                  context.commit('getAvatar', avatar);
-                  resolve(response)
-              })
+              const fd = new FormData();
+              fd.append('image', avatar.data);
+              console.log(avatar.data)
+              axios.post('/saveavatar',
+                  // {file: formData.data.get('file')},
+                  {file1: fd},
+                  {headers: {'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+                          'Content-Type': `multipart/form-data`}})
+                  .then(response => {
+                      resolve(response)
+                  })
                   .catch(error => {
-                      reject(error);
+                      reject(error)
                   })
           })
       },
