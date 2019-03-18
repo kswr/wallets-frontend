@@ -64,7 +64,6 @@
                 })
                     .then(response => {
                         this.$router.push({ name: 'app' })
-                        this.$store.dispatch('getAvatar')
                     })
                     .catch(error => {
                         this.attempts++;
