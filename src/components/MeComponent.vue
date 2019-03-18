@@ -1,7 +1,7 @@
 <template>
     <div id="mecomponent">
         <v-layout justify-center align-center>
-            <v-flex xs11 sm8 md5 lg4 xl4 >
+            <v-flex xs11 sm7 md5 lg4 xl4 >
                 <v-card style=" border-radius: 20px; margin-top: 20px; margin-bottom: 20px">
                     <v-card-title>
                         <div class="title ">My account </div>
@@ -27,9 +27,10 @@
                                         <v-container style="padding-top: 0">
                                             <v-layout row wrap>
                                                 <v-flex xs12>
-                                                    <input type="file">
+                                                    <input type="file" @change="onLoad">
                                                 </v-flex>
                                                 <v-flex xs12 style="margin-top: 10px" @click="snackbar = !snackbar">
+                                                    <!--<v-flex xs12 style="margin-top: 10px" @click="onSave">-->
                                                     <v-btn block>Upload</v-btn>
                                                 </v-flex>
                                             </v-layout>
@@ -98,16 +99,38 @@
     export default {
         data() {
             return{
-                firstName: this.$store.getters.firstName,
-                lastName: this.$store.getters.lastName,
-                avatarUrl: this.$store.getters.avatarUrl,
                 snackbar: false,
                 snackbarText: 'Not implemented yet',
+                newAvatar: null,
             }
         },
         methods: {
+            onLoad(event) {
+                this.newAvatar = event.target.files[0];
+            },
+            onSave() {
+               this.$store.dispatch('updateAvatar', {
+                   data: this.newAvatar
+               })
+                   .then(response => {
+                       console.log(response)
+                   })
+                   .catch(error => {
+                       console.log(error)
+                       console.log('error')
+                   })
+            }
         },
-        components: {
+        computed: {
+            avatarUrl() {
+                return this.$store.getters.avatarUrl;
+            },
+            lastName() {
+                return this.$store.getters.lastName;
+            },
+            firstName() {
+                return this.$store.getters.firstName;
+            }
         }
     }
 
